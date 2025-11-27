@@ -1,10 +1,10 @@
 import React from 'react'
+import Home from './pages/Home'
 
 function App() {
   return (
     <div>
-      <h1>Guess The AI Generated Picture</h1>
-      <p>Welcome to the game!</p>
+      <Home/>
     </div>
   )
 }

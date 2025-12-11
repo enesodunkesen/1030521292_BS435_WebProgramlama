@@ -1,5 +1,9 @@
+import './StartButton.css'
+
 function StartButton({ onStart }) {
-    return <button onClick={onStart}>Ready</button>
+    return <div className='ButtonContainer'>
+        <button className="StartButton" onClick={onStart}><span>Ready</span></button>
+    </div>
 }
 
 export default StartButton

@@ -1,6 +1,8 @@
+import './GameTitle.css'
+
 function GameTitle(){
     return (
-        <h1>Welcome to the Guess the AI game</h1>
+        <h1 className="GameTitle">Guess the AI generated picture</h1>
     )
 }
 

@@ -1,0 +1,103 @@
+.ModeSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.ModeSelector h3 {
+  background: linear-gradient(90deg, #00f, #0ff, #00f) -100%/ 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font: 900 clamp(1.5em, 3vw, 3em) exo, monospace;
+  margin: 0;
+  cursor: default;
+  text-align: center;
+}
+
+.ModeSelector h3:hover {
+  	animation: shimmer 1s linear infinite;
+	  cursor:default;
+}
+
+.radio-input input {
+  display: none;
+}
+
+.radio-input {
+  --container_width: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(5, 6, 45, 0.8);
+  backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  width: var(--container_width);
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-image: linear-gradient(rgba(5, 6, 45, 0.8), rgba(5, 6, 45, 0.8)), 
+                    linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 10px 25px -5px;
+}
+
+.radio-input label {
+  width: 100%;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  font-family: exo, monospace;
+  transition: all 0.3s ease;
+}
+
+.selection {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: calc(var(--container_width) / 2);
+  z-index: 0;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: 6px;
+}
+
+.radio-input label:nth-child(1):has(input:checked) {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.radio-input label:nth-child(2):has(input:checked) {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.radio-input label:nth-child(1):has(input:checked) ~ .selection {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  display: inline-block;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.radio-input label:nth-child(2):has(input:checked) ~ .selection {
+  background: linear-gradient(135deg, #00ff00, #00cc00);
+  display: inline-block;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+.radio-input label:nth-child(1):has(input:checked) ~ .selection {
+  transform: translateX(0);
+}
+
+.radio-input label:nth-child(2):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) / 2));
+}

@@ -1,0 +1,53 @@
+.PlayerNameInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.PlayerNameInput h3 {
+  background: linear-gradient(90deg, #00f, #0ff, #00f) -100%/ 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font: 900 clamp(1.5em, 3vw, 3em) exo, monospace;
+  margin: 0;
+  cursor: default;
+  text-align: center;
+}
+
+.PlayerNameInput input {
+  width: 300px;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-family: exo, monospace;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: rgba(5, 6, 45, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-image: linear-gradient(rgba(5, 6, 45, 0.8), rgba(5, 6, 45, 0.8)), 
+                    linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 10px 25px -5px;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.PlayerNameInput input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.PlayerNameInput input:focus {
+  box-shadow: rgba(151, 65, 252, 0.4) 0 15px 35px -5px,
+              0 0 20px rgba(91, 66, 243, 0.3);
+  transform: translateY(-2px);
+}
+
+.PlayerNameInput input:hover {
+  box-shadow: rgba(151, 65, 252, 0.3) 0 12px 30px -5px;
+}

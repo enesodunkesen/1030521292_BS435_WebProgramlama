@@ -1,0 +1,22 @@
+    .GameTitle {
+	place-self: center;
+	background: linear-gradient(90deg, #00f, #0ff, #00f) -100%/ 200%;
+	-webkit-background-clip: text;
+	        background-clip: text;
+	color: transparent;
+	font: 900 clamp(2em, 5vw, 10em) exo, monospace;
+	
+}
+
+@keyframes shimmer { to { background-position: 100% } }
+
+.GameTitle:hover {
+	animation: shimmer 1s linear infinite;
+	cursor:default;
+}
+@media (forced-colors: active) {
+  p {
+    background: #212121;
+    color: aquamarine
+  }
+}

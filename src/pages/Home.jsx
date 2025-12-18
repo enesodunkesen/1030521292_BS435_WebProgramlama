@@ -3,6 +3,7 @@ import StartButton from "../components/UI/StartButton";
 import GameTitle from "../components/Home/GameTitle";
 import ModeSelector from "../components/Home/ModeSelector";
 import PlayerNameInput from "../components/Home/PlayerNameInput";
+import Game from "./Game";
 
 function Home(){
     const [gameStarted, setGameStarted] = useState(false)
@@ -22,6 +23,12 @@ function Home(){
         setGameStarted(true)
     }
 
+    const handleBackToHome = () => {
+        setGameStarted(false);
+        setSelectedMode(null);
+        setPlayerName('');
+    }
+
     if (!gameStarted)
     {
         return (
@@ -35,9 +42,11 @@ function Home(){
     }
     else{
         return (
-            <>
-                <p>Game is started</p>
-            </>
+            <Game 
+                playerName={playerName} 
+                mode={selectedMode} 
+                onBackToHome={handleBackToHome}
+            />
         )
     }
 }

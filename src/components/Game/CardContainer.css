@@ -1,0 +1,55 @@
+.card-container {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+}
+
+/* Animation for cards appearing */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cards-wrapper > * {
+    animation: cardAppear 0.5s ease forwards;
+}
+
+.cards-wrapper > *:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.cards-wrapper > *:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.cards-wrapper > *:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .cards-wrapper {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-wrapper {
+        gap: 1rem;
+    }
+}

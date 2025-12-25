@@ -2,7 +2,7 @@ import React from 'react';
 import ImageCard from './ImageCard';
 import './CardContainer.css';
 
-function CardContainer({ images, onChoose, disabled, revealedCards }) {
+function CardContainer({ images, onChoose, disabled, revealedCards, eliminatedCard }) {
     return (
         <div className="card-container">
             <div className="cards-wrapper">
@@ -11,8 +11,9 @@ function CardContainer({ images, onChoose, disabled, revealedCards }) {
                         key={image.id}
                         image={image}
                         onChoose={onChoose}
-                        disabled={disabled}
+                        disabled={disabled || image.id === eliminatedCard}
                         revealed={revealedCards.includes(image.id)}
+                        eliminated={image.id === eliminatedCard}
                     />
                 ))}
             </div>

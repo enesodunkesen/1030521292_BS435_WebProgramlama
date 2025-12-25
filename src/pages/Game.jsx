@@ -11,8 +11,10 @@ function Game({ playerName, mode, onBackToHome }) {
     const [roundComplete, setRoundComplete] = useState(false);
     const [feedback, setFeedback] = useState(null);
     const [gameOver, setGameOver] = useState(false);
+    const [secondChance, setSecondChance] = useState(false);
+    const [eliminatedCard, setEliminatedCard] = useState(null);
+    const [roundResult, setRoundResult] = useState(null);
 
-    const TOTAL_ROUNDS = 3;
     const CARDS_PER_ROUND = 3;
     useEffect(() => {
         loadNewRound();
@@ -34,35 +36,59 @@ function Game({ playerName, mode, onBackToHome }) {
         setRevealedCards([]);
         setRoundComplete(false);
         setFeedback(null);
+        setSecondChance(false);
+        setEliminatedCard(null);
+        setRoundResult(null);
     };
 
     const handleChoose = (selectedImage) => {
         if (roundComplete) return;
-        setRevealedCards(currentImages.map(img => img.id));
-        setRoundComplete(true);
 
         if (selectedImage.isAI) {
-            const points = mode === 'hard' ? 20 : 10;
+            setRevealedCards(currentImages.map(img => img.id));
+            setRoundComplete(true);
+            const points = secondChance ? (mode === 'hard' ? 10 : 5) : (mode === 'hard' ? 20 : 10);
             setScore(prev => prev + points);
             setFeedback({
                 type: 'correct',
-                message: `Correct! +${points} points`
+                message: secondChance ? `Correct on second try! +${points} points` : `Correct! +${points} points`
+            });
+            setRoundResult({
+                success: true,
+                correctImage: selectedImage
             });
         } else {
-            setFeedback({
-                type: 'wrong',
-                message: 'Wrong! That was a real photo.'
-            });
+            if (!secondChance) {
+                setSecondChance(true);
+                setEliminatedCard(selectedImage.id);
+                setRevealedCards([selectedImage.id]);
+                setFeedback({
+                    type: 'secondChance',
+                    message: 'Second Chance! That was a real photo. Try again with the remaining images!'
+                });
+            } else {
+                setRevealedCards(currentImages.map(img => img.id));
+                setRoundComplete(true);
+                setFeedback({
+                    type: 'wrong',
+                    message: 'Wrong again! The AI image has been revealed.'
+                });
+                const aiImage = currentImages.find(img => img.isAI);
+                setRoundResult({
+                    success: false,
+                    correctImage: aiImage
+                });
+            }
         }
     };
 
     const handleNextRound = () => {
-        if (round >= TOTAL_ROUNDS) {
-            setGameOver(true);
-        } else {
-            setRound(prev => prev + 1);
-            loadNewRound();
-        }
+        setRound(prev => prev + 1);
+        loadNewRound();
+    };
+
+    const handleShowResults = () => {
+        setGameOver(true);
     };
 
     const handlePlayAgain = () => {
@@ -83,6 +109,8 @@ function Game({ playerName, mode, onBackToHome }) {
                     </div>
                     <p className="player-result">
                         Great job, <span className="player-highlight">{playerName}</span>!
+                        <br />
+                        <span className="rounds-played">Rounds Played: {round}</span>
                     </p>
                     <div className="game-over-buttons">
                         <button className="action-button play-again" onClick={handlePlayAgain}>
@@ -103,7 +131,7 @@ function Game({ playerName, mode, onBackToHome }) {
                 playerName={playerName} 
                 mode={mode} 
                 score={score} 
-                round={`${round}/${TOTAL_ROUNDS}`} 
+                round={`Round ${round}`} 
             />
             
             <p className="game-instruction">
@@ -115,6 +143,7 @@ function Game({ playerName, mode, onBackToHome }) {
                 onChoose={handleChoose}
                 disabled={roundComplete}
                 revealedCards={revealedCards}
+                eliminatedCard={eliminatedCard}
             />
 
             {feedback && (
@@ -123,10 +152,17 @@ function Game({ playerName, mode, onBackToHome }) {
                 </div>
             )}
 
-            {roundComplete && !gameOver && (
-                <button className="next-round-button" onClick={handleNextRound}>
-                    <span>{round >= TOTAL_ROUNDS ? 'See Results' : 'Next Round'}</span>
-                </button>
+            {roundResult && (
+                <div className={`round-result ${roundResult.success ? 'success' : 'failure'}`}>
+                    <div className="round-result-buttons">
+                        <button className="next-round-button" onClick={handleNextRound}>
+                            <span>Start Next Round</span>
+                        </button>
+                        <button className="next-round-button show-results" onClick={handleShowResults}>
+                            <span>Show Results</span>
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );

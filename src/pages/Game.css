@@ -51,7 +51,93 @@
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
-/* Next Round Button */
+.feedback-message.secondChance {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 140, 0, 0.1));
+    border: 2px solid #ffa500;
+    color: #ffa500;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+    animation: pulse 1.5s ease-in-out infinite, feedbackAppear 0.3s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(255, 165, 0, 0.6);
+    }
+}
+
+.round-result {
+    margin-top: 1.5rem;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    animation: resultAppear 0.4s ease;
+    max-width: 90vw;
+    box-sizing: border-box;
+}
+
+@keyframes resultAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.round-result.success {
+    background: linear-gradient(135deg, rgba(0, 255, 100, 0.15), rgba(0, 200, 80, 0.1));
+    border: 2px solid rgba(0, 255, 100, 0.5);
+}
+
+.round-result.failure {
+    background: linear-gradient(135deg, rgba(100, 100, 255, 0.15), rgba(80, 80, 200, 0.1));
+    border: 2px solid rgba(100, 100, 255, 0.5);
+}
+
+.round-result-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.round-result-buttons .next-round-button {
+    min-width: auto;
+    font-size: 13px;
+    margin-top: 0;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.round-result-buttons .next-round-button span {
+    padding: 10px 14px;
+}
+
+.next-round-button.show-results {
+    background-image: linear-gradient(144deg, #FF6B6B, #EE5A24 50%, #F79F1F);
+}
+
+.rounds-played {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+.result-message {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: exo, monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+}
+
 .next-round-button {
     margin-top: 1.5rem;
     align-items: center;
@@ -80,18 +166,13 @@
 
 .next-round-button span {
     background-color: rgb(5, 6, 45);
-    padding: 14px 28px;
     border-radius: 6px;
-    width: 100%;
-    height: 100%;
     transition: 300ms;
 }
 
 .next-round-button:hover span {
     background: none;
 }
-
-/* Game Over Styles */
 .game-over-container {
     display: flex;
     flex-direction: column;
@@ -225,7 +306,6 @@
     box-shadow: rgba(100, 100, 100, 0.2) 0 15px 30px -5px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .game-page {
         padding: 1rem;

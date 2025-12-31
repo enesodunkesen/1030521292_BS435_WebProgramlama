@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import StartButton from "../components/UI/StartButton";
+import RulesModal from "../components/UI/RulesModal";
 import GameTitle from "../components/Home/GameTitle";
 import ModeSelector from "../components/Home/ModeSelector";
 import PlayerNameInput from "../components/Home/PlayerNameInput";
@@ -7,8 +8,9 @@ import Game from "./Game";
 
 function Home(){
     const [gameStarted, setGameStarted] = useState(false)
+    const [showRules, setShowRules] = useState(false)
 
-    const [selectedMode, setSelectedMode] = useState(null);
+    const [selectedMode, setSelectedMode] = useState('easy');
     const [playerName, setPlayerName] = useState('');
 
     const onStart = () => {
@@ -34,9 +36,13 @@ function Home(){
         return (
             <>
                 <GameTitle/>
+                <button className="rules-button" onClick={() => setShowRules(true)}>
+                    How to Play
+                </button>
                 <PlayerNameInput value={playerName} onChange={setPlayerName} />
-                <ModeSelector onModeSelect={(mode) => setSelectedMode(mode)} />
+                <ModeSelector onModeSelect={(mode) => setSelectedMode(mode)} selectedMode={selectedMode} />
                 <StartButton onStart={onStart}/>
+                <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
             </>
         )
     }

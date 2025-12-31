@@ -1,27 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import './ModeSelector.css'
 
-function ModeSelector({ onModeSelect }) {
-    const [selectedMode, setSelectedMode] = useState(null);
-
+function ModeSelector({ onModeSelect, selectedMode }) {
     const handleSelect = (mode) => {
-        setSelectedMode(mode);
         onModeSelect(mode);
     };
 
     return (
         <div className="ModeSelector">
             <h3>Select Game Mode</h3>
-            <div class="radio-input">
+            <div className="radio-input">
                 <label>
-                    <input onClick={() => handleSelect("hard")} type="radio" id="value-1" name="value-radio" value="1" />
+                    <input onChange={() => handleSelect("hard")} type="radio" id="value-1" name="value-radio" value="1" checked={selectedMode === 'hard'} />
                     <span>Hard Mode</span>
                 </label>
                 <label>
-                    <input onClick={() => handleSelect("easy")} type="radio" id="value-2" name="value-radio" value="2" />
+                    <input onChange={() => handleSelect("easy")} type="radio" id="value-2" name="value-radio" value="2" checked={selectedMode === 'easy'} />
                     <span>Easy Mode</span>
                 </label>
-                <span class="selection"></span>
+                <span className="selection"></span>
             </div>
         </div>
     );

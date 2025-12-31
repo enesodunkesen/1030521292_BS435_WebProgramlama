@@ -1,0 +1,234 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: rgba(5, 6, 45, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 550px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    border: 2px solid transparent;
+    background-image: linear-gradient(rgba(5, 6, 45, 0.95), rgba(5, 6, 45, 0.95)), 
+                      linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: rgba(151, 65, 252, 0.4) 0 20px 60px -10px;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+.modal-title {
+    background: linear-gradient(90deg, #AF40FF, #5B42F3, #00DDEB);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: exo, monospace;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.modal-intro {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-intro p {
+    color: rgba(255, 255, 255, 0.85);
+    font-family: exo, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+.rules-heading {
+    color: #00DDEB;
+    font-family: exo, monospace;
+    font-size: 1.1rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: exo, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.rule-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.difficulty-info {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.difficulty-card {
+    flex: 1;
+    min-width: 150px;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.difficulty-card strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: exo, monospace;
+    font-size: 14px;
+}
+
+.difficulty-card p {
+    margin: 0;
+    font-family: exo, monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.difficulty-card.easy {
+    background: linear-gradient(135deg, rgba(0, 255, 100, 0.15), rgba(0, 200, 80, 0.1));
+    border: 1px solid rgba(0, 255, 100, 0.3);
+    color: #44ff88;
+}
+
+.difficulty-card.hard {
+    background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(200, 80, 80, 0.1));
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: #ff6666;
+}
+
+.modal-start-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    padding: 3px;
+    cursor: pointer;
+    font-family: exo, monospace;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.modal-start-btn span {
+    background-color: rgb(5, 6, 45);
+    padding: 12px 24px;
+    border-radius: 6px;
+    width: 100%;
+    transition: 300ms;
+}
+
+.modal-start-btn:hover span {
+    background: none;
+}
+
+/* Scrollbar styling */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(151, 65, 252, 0.5);
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(151, 65, 252, 0.7);
+}
+
+/* Rules Button on Home Page */
+.rules-button {
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 10px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: exo, monospace;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rules-button:hover {
+    background: rgba(151, 65, 252, 0.3);
+    border-color: rgba(151, 65, 252, 0.6);
+    transform: translateY(-2px);
+}

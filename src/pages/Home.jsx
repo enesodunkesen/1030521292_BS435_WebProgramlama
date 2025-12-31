@@ -3,6 +3,7 @@ import StartButton from "../components/UI/StartButton";
 import RulesModal from "../components/UI/RulesModal";
 import GameTitle from "../components/Home/GameTitle";
 import ModeSelector from "../components/Home/ModeSelector";
+import CategorySelector from "../components/Home/CategorySelector";
 import PlayerNameInput from "../components/Home/PlayerNameInput";
 import Game from "./Game";
 
@@ -11,6 +12,7 @@ function Home(){
     const [showRules, setShowRules] = useState(false)
 
     const [selectedMode, setSelectedMode] = useState('easy');
+    const [selectedCategory, setSelectedCategory] = useState('faces');
     const [playerName, setPlayerName] = useState('');
 
     const onStart = () => {
@@ -27,7 +29,8 @@ function Home(){
 
     const handleBackToHome = () => {
         setGameStarted(false);
-        setSelectedMode(null);
+        setSelectedMode('easy');
+        setSelectedCategory('faces');
         setPlayerName('');
     }
 
@@ -41,6 +44,7 @@ function Home(){
                 </button>
                 <PlayerNameInput value={playerName} onChange={setPlayerName} />
                 <ModeSelector onModeSelect={(mode) => setSelectedMode(mode)} selectedMode={selectedMode} />
+                <CategorySelector onCategorySelect={(category) => setSelectedCategory(category)} selectedCategory={selectedCategory} />
                 <StartButton onStart={onStart}/>
                 <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
             </>
@@ -50,7 +54,8 @@ function Home(){
         return (
             <Game 
                 playerName={playerName} 
-                mode={selectedMode} 
+                mode={selectedMode}
+                category={selectedCategory}
                 onBackToHome={handleBackToHome}
             />
         )

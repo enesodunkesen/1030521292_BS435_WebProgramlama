@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { GameHeader, CardContainer } from '../components/Game';
-import { getRandomImages } from '../data/imageData';
+import { getRandomImages, categoryHints } from '../data/imageData';
 import './Game.css';
 
-function Game({ playerName, mode, onBackToHome }) {
+function Game({ playerName, mode, category, onBackToHome }) {
     const [score, setScore] = useState(0);
     const [round, setRound] = useState(1);
     const [currentImages, setCurrentImages] = useState([]);
@@ -21,11 +21,11 @@ function Game({ playerName, mode, onBackToHome }) {
     }, []);
 
     const loadNewRound = () => {
-        const images = getRandomImages(mode, CARDS_PER_ROUND);
+        const images = getRandomImages(mode, CARDS_PER_ROUND, category);
         
         const hasAI = images.some(img => img.isAI);
         if (!hasAI && images.length > 0) {
-            const allImages = getRandomImages(mode, 10);
+            const allImages = getRandomImages(mode, 10, category);
             const aiImage = allImages.find(img => img.isAI);
             if (aiImage) {
                 images[0] = aiImage;
@@ -64,7 +64,7 @@ function Game({ playerName, mode, onBackToHome }) {
                 setRevealedCards([selectedImage.id]);
                 setFeedback({
                     type: 'secondChance',
-                    message: 'Second Chance! That was a real photo. Try again with the remaining images!'
+                    message: categoryHints[category] || 'Hint: Look more carefully at the details!'
                 });
             } else {
                 setRevealedCards(currentImages.map(img => img.id));

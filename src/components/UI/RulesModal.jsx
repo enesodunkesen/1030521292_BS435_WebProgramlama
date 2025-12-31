@@ -50,6 +50,22 @@ function RulesModal({ isOpen, onClose }) {
                     </div>
                 </div>
 
+                <h3 className="rules-heading">Image Categories</h3>
+                <div className="category-info">
+                    <div className="category-card faces">
+                        <strong>Faces</strong>
+                        <p>Human portraits and face images</p>
+                    </div>
+                    <div className="category-card cities">
+                        <strong>Cities</strong>
+                        <p>Urban landscapes and cityscapes</p>
+                    </div>
+                    <div className="category-card cats">
+                        <strong>Cats</strong>
+                        <p>Cat photos and feline images</p>
+                    </div>
+                </div>
+
                 <button className="modal-start-btn" onClick={onClose}>
                     <span>Got it!</span>
                 </button>
